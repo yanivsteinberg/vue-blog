@@ -12,6 +12,7 @@ const VIEWS = {
 
 const LAYOUTS = {
   MAIN: () => import('../layouts/MainLayout'),
+  READER: () => import('../layouts/ReaderLayout'),
 };
 
 const router = new VueRouter({
@@ -24,20 +25,26 @@ const router = new VueRouter({
       children: [
         {
           path: '/',
-          name: 'Home',
-          component: VIEWS.HOME,
+          component: LAYOUTS.READER,
+          children: [
+            {
+              path: '/',
+              name: 'Home',
+              component: VIEWS.HOME,
+            },
+            {
+              path: '/about',
+              name: 'About',
+              component: VIEWS.ABOUT,
+            },
+          ],
         },
         {
-          path: '/about',
-          name: 'About',
-          component: VIEWS.ABOUT,
+          path: '/contacts',
+          name: 'Contact',
+          component: VIEWS.CONTACT,
         },
       ],
-    },
-    {
-      path: '/contacts',
-      name: 'Contact',
-      component: VIEWS.CONTACT,
     },
   ],
 });
