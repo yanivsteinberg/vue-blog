@@ -5,6 +5,8 @@ Vue.use(VueRouter);
 
 const VIEWS = {
   HOME: () => import('../views/Home'),
+  ABOUT: () => import('../views/About'),
+  CONTACT: () => import('../views/Contact'),
 
 };
 
@@ -25,7 +27,17 @@ const router = new VueRouter({
           name: 'Home',
           component: VIEWS.HOME,
         },
+        {
+          path: '/about',
+          name: 'About',
+          component: VIEWS.ABOUT,
+        },
       ],
+    },
+    {
+      path: '/contacts',
+      name: 'Contact',
+      component: VIEWS.CONTACT,
     },
   ],
 });
