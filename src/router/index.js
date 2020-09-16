@@ -7,7 +7,7 @@ const VIEWS = {
   HOME: () => import('../views/Home'),
   ABOUT: () => import('../views/About'),
   CONTACT: () => import('../views/Contact'),
-
+  POST: () => import('../views/Post'),
 };
 
 const LAYOUTS = {
@@ -15,6 +15,7 @@ const LAYOUTS = {
   READER: () => import('../layouts/ReaderLayout'),
 };
 
+// Vue instance router
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -36,6 +37,11 @@ const router = new VueRouter({
               path: '/about',
               name: 'About',
               component: VIEWS.ABOUT,
+            },
+            {
+              path: '/posts/:postId',
+              prop: true,
+              component: VIEWS.POST,
             },
           ],
         },

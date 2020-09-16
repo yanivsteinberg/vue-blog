@@ -1,5 +1,7 @@
 <template>
-  <div>home</div>
+  <div>
+    <div v-for="(post, idx) in posts" :key="idx"></div>
+  </div>
 </template>
 
 <script>
