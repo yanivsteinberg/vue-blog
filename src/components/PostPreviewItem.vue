@@ -2,14 +2,20 @@
   <section class="card" @click.prevent="handleClick()">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+        <img
+          src="https://bulma.io/images/placeholders/1280x960.png"
+          alt="Placeholder image"
+        />
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+            <img
+              src="https://bulma.io/images/placeholders/96x96.png"
+              alt="Placeholder image"
+            />
           </figure>
         </div>
         <div class="media-content">
@@ -28,6 +34,10 @@ import Author from '@/data/Author';
 export default {
   name: 'PostPreviewItem',
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -36,7 +46,7 @@ export default {
       type: Author,
       required: true,
     },
-    cardImage: {
+    titlePictureUrl: {
       type: String,
       default: '',
     },
@@ -45,7 +55,7 @@ export default {
     handleClick() {
       this.$router.push({
         name: 'Post',
-        params: { postId: this.title },
+        params: { postId: this.id },
       });
     },
   },
@@ -55,5 +65,8 @@ export default {
 <style lang="scss" scoped>
 .card {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex-flow: column-wrap;
 }
 </style>

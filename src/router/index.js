@@ -38,12 +38,13 @@ const router = new VueRouter({
               name: 'About',
               component: VIEWS.ABOUT,
             },
-            {
-              path: '/posts/:postId',
-              prop: true,
-              component: VIEWS.POST,
-            },
           ],
+        },
+        {
+          path: '/posts/:postId',
+          name: 'Post',
+          props: true,
+          component: VIEWS.POST,
         },
         {
           path: '/contacts',

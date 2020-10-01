@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    <banner />
+  <div>
+    <home-page-carousel />
     <br />
     <router-view />
   </div>
 </template>
 
 <script>
-import Banner from '@/components/Banner.vue';
+import HomePageCarousel from '@/components/HomePageCarousel.vue';
 
 export default {
-  name: 'MainLayout',
-  components: { Banner },
+  name: 'ReaderLayout',
+  components: { HomePageCarousel },
 };
 </script>
