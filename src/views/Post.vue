@@ -8,9 +8,10 @@
       <div class="container">
         <div class="columns">
           <div class="column is-one-quarter has-text-right">
-            <figure class="image is-4by3">
+            <figure class="image is-96X96">
               <img
-                src="https://bulma.io/images/placeholders/1280x960.png"
+                class="is-rounded"
+                src="https://bulma.io/images/placeholders/96x96.png"
                 alt="Placeholder image"
               />
             </figure>
