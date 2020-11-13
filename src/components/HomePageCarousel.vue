@@ -3,7 +3,7 @@ import loremPicsum from 'lorem-picsum';
 <template>
   <b-carousel class="Banner-Wrapper">
     <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
-      <section :class="`hero is-medium is-${carousel.color}`">
+      <section :class="`hero is-large is-${carousel.color}`">
         <img :src="getImgUrl(i)" class="is-background" />
         <div class="hero-body">
           <div class="container">

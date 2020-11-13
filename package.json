@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "buefy": "^0.9.3",
     "core-js": "^3.6.5",
     "lorem-ipsum": "^2.0.3",
     "lorem-picsum": "^1.0.0",
+    "marked": "^1.2.3",
     "uuid": "^8.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

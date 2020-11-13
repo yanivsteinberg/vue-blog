@@ -1,5 +1,9 @@
 <template>
-  <section class="card" @click.prevent="handleClick()">
+  <router-link
+    :to="{ name: 'Post', params: { postId: id } }"
+    tag="div"
+    class="card"
+  >
     <div class="card-image">
       <figure class="image is-4by3">
         <img
@@ -10,28 +14,40 @@
       </figure>
     </div>
     <div class="card-content">
-      <div class="media">
+      <router-link
+        :to="{ name: 'author', params: { authorId: author.id } }"
+        class="media author-link"
+        tag="div"
+      >
         <div class="media-left">
-          <figure class="image is-48x48">
-            <img
-              class="is-rounded"
-              src="https://bulma.io/images/placeholders/96x96.png"
+          <div class="image-container">
+            <b-image
+              :src="author.pictureUrl"
               alt="Placeholder image"
+              ratio="38by38"
+              rounded
+              responsive
             />
-          </figure>
+          </div>
         </div>
         <div class="media-content">
-          <p class="title is-4">{{ author.firstName }} {{ author.lastName }}</p>
+          <div class="content">
+            <h6 class="subtitle is-6">
+              {{ author.firstName }} {{ author.lastName }}
+            </h6>
+          </div>
         </div>
-      </div>
+      </router-link>
 
-      <div class="content">{{ title }}</div>
+      <div class="content">
+        <h3 class="title">{{ title }}</h3>
+      </div>
     </div>
-  </section>
+  </router-link>
 </template>
 
 <script>
-import Author from '@/data/Author';
+import AuthorBase from '@/data/AuthorBase';
 
 export default {
   name: 'PostPreviewItem',
@@ -45,7 +61,7 @@ export default {
       required: true,
     },
     author: {
-      type: Author,
+      type: AuthorBase,
       required: true,
     },
     titlePictureUrl: {
@@ -53,22 +69,30 @@ export default {
       default: '',
     },
   },
-  methods: {
-    handleClick() {
-      this.$router.push({
-        name: 'Post',
-        params: { postId: this.id },
-      });
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
+  @include grow-shadow(1.025);
+
   cursor: pointer;
   display: flex;
   flex-direction: column;
   flex-flow: column-wrap;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .image-container {
+    float: right;
+    width: 60px;
+    height: 60px;
+  }
+
+  .author-link {
+    border-radius: 27px;
+  }
+  .author-link:hover {
+    background: $primary;
+  }
 }
 </style>

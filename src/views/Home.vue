@@ -1,11 +1,6 @@
 <template>
-  <div class="postview container">
-    <post-preview-item
-      v-for="post in posts"
-      :key="post.id"
-      v-bind="post"
-      class="postview-post"
-    />
+  <div class="Home__Wrapper container">
+    <post-preview-item v-for="post in posts" :key="post.id" v-bind="post"/>
   </div>
 </template>
 
@@ -28,20 +23,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.postview {
+.Home__Wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
 
-.postview-post {
-  width: 100%;
-  margin-bottom: 10px;
-}
+  $element-spacing: 16px;
 
-.postview > .postview-post {
-  flex: 0 33%;
-  box-sizing: border-box;
+  > * {
+    margin-bottom: $element-spacing;
+    flex: 0 32%;
+
+    &:not(:nth-child(3n)):not(:last-child) {
+      margin-right: $element-spacing;
+    }
+  }
 }
 </style>

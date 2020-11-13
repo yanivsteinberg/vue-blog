@@ -8,6 +8,7 @@ const VIEWS = {
   ABOUT: () => import('../views/About'),
   CONTACT: () => import('../views/Contact'),
   POST: () => import('../views/Post'),
+  AUTHOR: () => import('../views/Author'),
 };
 
 const LAYOUTS = {
@@ -45,6 +46,12 @@ const router = new VueRouter({
           name: 'Post',
           props: true,
           component: VIEWS.POST,
+        },
+        {
+          path: '/authors/:authorId',
+          name: 'author',
+          props: true,
+          component: VIEWS.AUTHOR,
         },
         {
           path: '/contacts',

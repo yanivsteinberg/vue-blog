@@ -1,24 +1,40 @@
 <template>
   <div class="Post__Wrapper">
     <template v-if="post">
-      <post-banner
+      <view-banner
         :title="post.title"
         :titlePictureUrl="post.titlePictureUrl"
       />
       <div class="container">
         <div class="columns">
-          <div class="column is-one-quarter has-text-right">
-            <figure class="image is-96X96">
-              <img
-                class="is-rounded"
-                src="https://bulma.io/images/placeholders/96x96.png"
-                alt="Placeholder image"
-              />
-            </figure>
-            <div>{{ post.author.firstName }} {{ post.author.lastName }}</div>
+          <div class="column is-one-quarter">
+            <div class="post-meta has-text-right">
+              <router-link
+                :to="{ name: 'author', params: { authorId: post.author.id } }"
+                tag="div"
+                class="author-data"
+              >
+                <div class="image">
+                  <b-image
+                    :src="post.author.pictureUrl"
+                    alt="Placeholder image"
+                    ratio="38by38"
+                    rounded
+                    responsive
+                  />
+                </div>
+                <b class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</b>
+              </router-link>
+              <br />
+              <div class="tags">
+                <b-tag v-for="{ id, name } in post.tags" :key="id">
+                  {{ name }}
+                </b-tag>
+              </div>
+            </div>
           </div>
           <div class="column">
-            <p>{{ post.content }}</p>
+            <div v-html="contentHtml" class="content"></div>
           </div>
         </div>
       </div>
@@ -26,15 +42,16 @@
   </div>
 </template>
 
+<script>
 // Data post
 // mounted fetch post(...)
-<script>
 import { getPost } from '@/services/postsService';
-import PostBanner from '@/components/Post/PostBanner.vue';
+import ViewBanner from '@/components/ViewBanner.vue';
+import marked from 'marked';
 
 export default {
   name: 'Post',
-  components: { PostBanner },
+  components: { ViewBanner },
   props: {
     postId: {
       type: String,
@@ -45,6 +62,11 @@ export default {
     return {
       post: null,
     };
+  },
+  computed: {
+    contentHtml() {
+      return this.post && marked(this.post.content);
+    },
   },
   async mounted() {
     this.post = await getPost(this.postId);
@@ -67,6 +89,45 @@ export default {
 .Post__Wrapper {
   > :not(:last-child) {
     margin-bottom: 1em;
+  }
+
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    float: right;
+  }
+  .author-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .author-name {
+      font-weight: 500;
+    }
+
+    &:hover {
+      cursor: pointer;
+      .author-name {
+        color: $link;
+      }
+    }
+  }
+
+  .image {
+    float: right;
+    width: 60px;
+    height: 60px;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content {
+    > :not(:last-child) {
+      margin-bottom: 0.5em;
+    }
   }
 }
 </style>

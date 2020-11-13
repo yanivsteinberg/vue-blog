@@ -11,9 +11,6 @@
           >CC BY NC SA 4.0</a
         >.
       </p>
-      <div class="footerImg container.is-widescreen">
-        <img src="../assets/img/img-footer.jpg" />
-      </div>
     </div>
   </footer>
 </template>
@@ -25,18 +22,4 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-  position: static;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100% !important;
-  border: black 3px !important;
-}
-
-.footerImg {
-  height: 100px;
-  width: 100% !important;
-  margin: 0;
-}
 </style>

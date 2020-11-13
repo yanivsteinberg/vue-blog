@@ -1,5 +1,5 @@
 <template>
-  <section class="PostBanner__Wrapper hero is-large has-background">
+  <section class="ViewBanner__Wrapper hero is-large has-background">
     <img :src="titlePictureUrl" class="is-background" />
     <div class="hero-body">
       <div class="container">
@@ -11,11 +11,11 @@
 
 <script>
 export default {
-  name: 'PostBanner',
+  name: 'ViewBanner',
   props: {
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     titlePictureUrl: {
       type: String,
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.PostBanner__Wrapper {
+.ViewBanner__Wrapper {
   &.has-background {
     position: relative;
     overflow: hidden;
